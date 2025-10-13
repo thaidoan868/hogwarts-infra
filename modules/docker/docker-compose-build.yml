@@ -5,4 +5,4 @@ services:
     build:
       context: postgres
       dockerfile: Dockerfile
-    image: thaidoan868/hogwarts-postgres:0.0.2
+    image: ${REGISTRY}/hogwarts-postgres:0.0.3

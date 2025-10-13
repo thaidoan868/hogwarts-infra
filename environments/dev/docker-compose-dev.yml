@@ -2,11 +2,9 @@ version: "3.9"
 
 services:
   postgres:
-    image: thaidoan868/hogwarts-postgres:0.0.2
+    image: ${REGISTRY}/hogwarts-postgres:0.0.2
     container_name: hogwarts-postgres
     restart: unless-stopped
-    env_file:
-      - .env
 
     ports:
       - "${PG_PORT:-5432}:5432"
