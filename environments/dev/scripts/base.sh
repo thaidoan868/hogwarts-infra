@@ -20,7 +20,13 @@ compose_cmd() {
 
 COMPOSE="$(compose_cmd)"
 
+start_docker_desktop() {
+  systemctl --user start docker-desktop
+}
+
 compose_up() {
+  start_docker_desktop
+
   echo "Pulling images (if needed)…"
   $COMPOSE -f "$COMPOSE_FILE" pull || true
 
