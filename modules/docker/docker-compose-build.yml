@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  postgres:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    image: thaidoan868/hogwarts-postgres:0.0.2
