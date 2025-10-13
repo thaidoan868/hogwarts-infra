@@ -16,5 +16,5 @@ consists of the following services:
     - **Port**: `9000`
 - **Redis**: In-memory data structure store, used as a database, cache, and message broker.
     - **Port**: `6379`
-## How to run the platform
+## How to run the platform 
 
