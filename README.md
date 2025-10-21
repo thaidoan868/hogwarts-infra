@@ -1,7 +1,8 @@
 # The infrastructure for the Hogwarts Application
 ## Overview
 This repository contains the infrastructure code for deploying and managing the Hogwarts Application. It includes Terraform configurations.
-## Local Platform for the Hogwarts application
+## Environments
+### 1. Development Environment
 This platform is considered as a local development environment for the Hogwarts application. It
 consists of the following services:
 - **Hogwarts Appplication:** The main application service for Hogwarts.
@@ -16,5 +17,28 @@ consists of the following services:
     - **Port**: `9000`
 - **Redis**: In-memory data structure store, used as a database, cache, and message broker.
     - **Port**: `6379`
-## How to run the platform 
+### 2. Staging environment
+**AWS ACM:**
+- Managing SSL certificates
 
+**AWS ALB:**
+- Routing to ECS services
+
+**AWS ECS:**
+- Managing containers
+
+**AWS EC2:**
+- Hogwarts application
+- Keycloak
+
+**AWS RDS:**
+- PostGreSQL database
+- redis cache
+- PostGreSQL for Keycloak
+
+**AWS S3:**
+- media files
+
+**AWS CloudWatch:**
+- Logging
+- Monitoring
