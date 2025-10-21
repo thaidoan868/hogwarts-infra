@@ -42,3 +42,29 @@ consists of the following services:
 **AWS CloudWatch:**
 - Logging
 - Monitoring
+
+## File Structure
+`/envirnments`: As the name implies it contains scripts to build different environments like local, staging or production. Each environment has its own needs and the scripts use infrastructure blocks from the modules folder to build the required infrastructure for the environment.
+
+`/modules`: Contains small blocks to build the infrastructure for local, staging or production  environments
+
+`/modules/docker`: Contains all needed docker images
+
+`/modules/terraform`: Contains all needed terraform scripts to build the infrastructure on AWS
+
+## How to set up the Development Environment
+### 1. Prerequisites
+- Docker installed on your local machine.
+- Your machine is a linux based os. When I developed this setup I used linux based os. So there might be some issues on other operating systems.
+
+### 2. Run the development infrastructure
+```bash
+# Clone the repository
+git clone https://github.com/thaidoan868/hogwarts-infra
+cd hogwarts-infra
+git switch dev
+
+# Start the development environment
+# Read make help for more commands
+make up
+```
