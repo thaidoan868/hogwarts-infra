@@ -21,7 +21,7 @@ jobs:
     permissions:
       contents: read
     env:
-      COMPOSE_FILE: modules/docker/docker-compose-build.yml
+      COMPOSE_FILE: docker/docker-compose-build.yml
       DOCKER_BUILDKIT: 1
       REGISTRY: ${{ secrets.DOCKERHUB_USERNAME }}
 
