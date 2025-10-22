@@ -2,5 +2,4 @@ services:
   postgres:
     build:
       context: postgres
-      dockerfile: postgres/Dockerfile
     image: ${REGISTRY}/hogwarts-postgres:0.0.4
