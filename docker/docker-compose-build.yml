@@ -3,4 +3,4 @@ services:
     build:
       context: postgres
       dockerfile: postgres/Dockerfile
-    image: ${REGISTRY}/hogwarts-postgres:0.0.3
+    image: ${REGISTRY}/hogwarts-postgres:0.0.4
