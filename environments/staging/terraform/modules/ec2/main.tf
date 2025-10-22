@@ -1,3 +1,7 @@
+resource "aws_ecs_cluster" "my_cluster" {
+  name = "ecs-cluster"
+}
+
 resource "aws_security_group" "ssh_sg" {
   name        = "ssh-sg"
   description = "Allow SSH inbound traffic"
@@ -24,6 +28,7 @@ resource "aws_key_pair" "ssh_key" {
 resource "aws_instance" "docker_ec2" {
   ami           = var.ami_id
   instance_type = var.instance_type
+  iam_instance_profile = aws_iam_instance_profile.ecs_agent_profile.name
   key_name      = aws_key_pair.ssh_key.key_name
   security_groups = [aws_security_group.ssh_sg.name]
 
@@ -64,9 +69,38 @@ echo "### ECS AGENT STATUS ###" >> /var/log/user_data.log
 systemctl status ecs > /var/log/user_data.log
 echo "### ECS AGENT STATUS ###" >> /var/log/user_data.log
               EOF
+  depends_on = [aws_ecs_cluster.my_cluster]
 
   tags = {
     Name = "DockerEC2"
   }
 }
 
+
+# set up role so the ecs agent can register to ECS
+resource "aws_iam_role" "ecs_agent_role" {
+  name               = "ecs-agent-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action    = "sts:AssumeRole"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+        Effect    = "Allow"
+        Sid       = ""
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_agent_policy" {
+  role       = aws_iam_role.ecs_agent_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+}
+
+resource "aws_iam_instance_profile" "ecs_agent_profile" {
+  name = "ecs-agent-profile"
+  role = aws_iam_role.ecs_agent_role.name
+}

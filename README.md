@@ -44,13 +44,15 @@ consists of the following services:
 - Monitoring
 
 ## File Structure
-`/envirnments`: As the name implies it contains scripts to build different environments like local, staging or production. Each environment has its own needs and the scripts use infrastructure blocks from the modules folder to build the required infrastructure for the environment.
+`/docker`: Contains all docker images for local, staging and production  environments
 
-`/modules`: Contains small blocks to build the infrastructure for local, staging or production  environments
+`/envirnments`: As the name implies it contains scripts to build different environments like local, staging or production. 
 
-`/modules/docker`: Contains all needed docker images
+`/environments/dev`: Contains scripts to build the local development environment. 
 
-`/modules/terraform`: Contains all needed terraform scripts to build the infrastructure on AWS
+`/environments/staging`: Contains all needed terraform scripts to build the infrastructure on AWS. You need only to run the main.tf file.
+
+`/environments/production`: Contains scripts to build the production environment on AWS.
 
 ## How to set up the Development Environment
 ### 1. Prerequisites
