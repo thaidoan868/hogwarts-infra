@@ -1,3 +1,4 @@
-modules/terraform/.terraform/
+environments/staging/terraform/.terraform/
+environments/staging/terraform/.env
 .idea
-pythonenv
+.env

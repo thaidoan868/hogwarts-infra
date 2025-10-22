@@ -13,6 +13,7 @@ provider "aws" {
   region  = var.region
 }
 
+# TEST MODULE
 # module "test" {
 #   source = "./modules/test"
 # }
@@ -20,15 +21,22 @@ provider "aws" {
 #   value       = module.test.output
 # }
 
+# RDS MODULE
 module "rds" {
-  source = "./modules/rds"
-  password = var.password
-  username = var.username
+  source = "modules/rds"
+  password = var.rds_password
+  username = var.rds_username
 }
-variable "password" {}
-variable "username" {}
+
+variable "rds_password" {}
+variable "rds_username" {}
 
 output "rds" {
   value       = module.rds.output
   sensitive = true
 }
+
+# EC2 MODULE
+
+
+# ECS MODULE

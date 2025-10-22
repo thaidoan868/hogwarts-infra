@@ -36,5 +36,5 @@ variable "publicly_accessible" {
 variable "allowed_cidrs" {
   description = "CIDR blocks allowed to connect to Postgres (5432). Use your-ip/32."
   type        = list(string)
-  default     = ["14.186.149.94/32"]
+  default     = ["0.0.0.0/0"]
 }
