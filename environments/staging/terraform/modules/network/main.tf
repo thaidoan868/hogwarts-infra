@@ -99,9 +99,9 @@ resource "aws_security_group" "tasks" {
   vpc_id = data.aws_vpc.default.id
 
   ingress {
-    description = "For hello world app"
-    from_port       = 8000
-    to_port         = 8000
+    description = "For the hogwarts app"
+    from_port       = 8081
+    to_port         = 8081
     protocol        = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

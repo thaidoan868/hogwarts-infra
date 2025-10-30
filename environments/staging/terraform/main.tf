@@ -50,7 +50,7 @@ module "ec2" {
 # ECS MODULE
 module "ecs" {
   source = "./modules/ecs"
-  hello_world_target_group_id = module.alb.hello_world_target_group_id
+  hogwarts_app_target_group_id = module.alb.hogwarts_app_target_group_id
   default_subnet_ids = module.network.default_subnet_ids
   tasks_security_group_id = module.network.tasks_security_group_id
 }

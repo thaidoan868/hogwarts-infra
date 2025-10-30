@@ -3,7 +3,7 @@
 #   description = "Public DNS name of the ALB"
 # }
 
-output "hello_world_target_group_id" {
-  value       = aws_lb_target_group.hello_world.id
-  description = "Hello World Target Group ID"
+output "hogwarts_app_target_group_id" {
+  value       = aws_lb_target_group.hogwarts_app.id
+  description = "Hogwarts App Target Group ID"
 }

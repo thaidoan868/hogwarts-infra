@@ -4,9 +4,9 @@ data "aws_acm_certificate" "oldmoon_io_vn" {
   most_recent = true
 }
 
-resource "aws_lb_target_group" "hello_world" {
-  name        = "hello-world-tg"
-  port        = 8000
+resource "aws_lb_target_group" "hogwarts_app" {
+  name        = "hogwarts-app-tg"
+  port        = 8081
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = var.default_vpc_id
@@ -15,8 +15,8 @@ resource "aws_lb_target_group" "hello_world" {
 
   health_check {
     enabled             = true
-    path                = "/"
-    port = "traffic-port"
+    path                = "/actuator/health"
+    port                = "traffic-port"
     protocol            = "HTTP"
     interval            = var.health_check_interval
     timeout             = var.health_check_timeout
@@ -63,6 +63,6 @@ resource "aws_lb_listener" "https" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.hello_world.id
+    target_group_arn = aws_lb_target_group.hogwarts_app.id
   }
 }
