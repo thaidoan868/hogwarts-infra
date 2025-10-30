@@ -14,6 +14,10 @@ variable "http_security_group_id" {
     type        = string
 }
 
+variable "https_security_group_id" {
+  type = string
+}
+
 
 # Variables with default values
 variable "target_group_name" {

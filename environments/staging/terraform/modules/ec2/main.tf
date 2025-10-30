@@ -3,15 +3,15 @@ resource "aws_key_pair" "ssh_key" {
   public_key = file("${path.module}/hogwarts-ec2-key.pub")
 }
 
-# resource "aws_instance" "hogwarts" {
-#   ami           = var.ami_id
-#   instance_type = var.instance_type
-#   iam_instance_profile = aws_iam_instance_profile.ecs_agent_profile.name
-#   key_name      = aws_key_pair.ssh_key.key_name
-#   vpc_security_group_ids = [var.ssh_security_group_id]
-#
-#   user_data = file("${path.module}/init.sh")
-# }
+resource "aws_instance" "hogwarts" {
+  ami           = var.ami_id
+  instance_type = var.instance_type
+  iam_instance_profile = aws_iam_instance_profile.ecs_agent_profile.name
+  key_name      = aws_key_pair.ssh_key.key_name
+  vpc_security_group_ids = [var.ssh_security_group_id]
+
+  user_data = file("${path.module}/init.sh")
+}
 
 
 # set up role so the ecs agent can register to ECS

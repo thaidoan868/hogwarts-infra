@@ -24,3 +24,7 @@ output "http_security_group_id" {
 output "tasks_security_group_id" {
   value = aws_security_group.tasks.id
 }
+
+output "https_security_group_id" {
+  value = aws_security_group.https.id
+}

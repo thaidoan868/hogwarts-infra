@@ -60,5 +60,6 @@ module "alb" {
   source = "./modules/alb"
   default_subnet_ids = module.network.default_subnet_ids
   http_security_group_id = module.network.http_security_group_id
+  https_security_group_id = module.network.https_security_group_id
   default_vpc_id = module.network.default_vpc_id
 }
