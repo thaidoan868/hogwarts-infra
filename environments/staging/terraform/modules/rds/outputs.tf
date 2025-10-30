@@ -1,11 +1,9 @@
-output "output" {
+output "postgres_address" {
   description = "RDS instance connection details"
-  value = {
-    vpc_cidr_range     = data.aws_vpc.default.cidr_block
-    endpoint           = aws_db_instance.postgres.address
-    port               = aws_db_instance.postgres.port
-    db_name            = aws_db_instance.postgres.db_name
-    security_group_id  = aws_security_group.postgres.id
-  }
-  sensitive = true
+  value = aws_db_instance.postgres.address
+}
+
+output "postgres_port" {
+  description = "RDS instance port"
+  value       = aws_db_instance.postgres.port
 }

@@ -1,4 +1,4 @@
 environments/staging/terraform/.terraform/
 environments/staging/terraform/.env
 .idea
-.env
+.sh

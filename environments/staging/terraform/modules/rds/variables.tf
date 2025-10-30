@@ -1,7 +1,17 @@
+# Variables without default values
+variable "postgrest_security_group_id" {
+  description = "Security group ID for PostgREST to access the database"
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "Subnets for the RDS instance"
+  type        = list(string)
+}
+
 variable "db_name" {
   description = "Initial database name"
   type        = string
-  default     = "appdb"
 }
 
 variable "username" {
@@ -15,6 +25,8 @@ variable "password" {
   sensitive   = true
 }
 
+
+# Variables with default values
 variable "instance_class" {
   description = "RDS instance class (free-tier eligible)"
   type        = string
@@ -30,11 +42,5 @@ variable "allocated_storage" {
 variable "publicly_accessible" {
   description = "Whether the DB is reachable from the public internet"
   type        = bool
-  default     = true
-}
-
-variable "allowed_cidrs" {
-  description = "CIDR blocks allowed to connect to Postgres (5432). Use your-ip/32."
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
+  default     = false
 }

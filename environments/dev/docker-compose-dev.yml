@@ -33,7 +33,7 @@ services:
 #    container_name: pgadmin
 #    restart: always
 #    env_file:
-#      - .env
+#      - .sh
 #    ports:
 #      - "5050:80"
 #    depends_on:
