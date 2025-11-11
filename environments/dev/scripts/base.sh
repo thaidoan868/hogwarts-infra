@@ -22,6 +22,7 @@ COMPOSE="$(compose_cmd)"
 
 start_docker_desktop() {
   systemctl --user start docker-desktop
+  sleep 2
 }
 
 compose_up() {

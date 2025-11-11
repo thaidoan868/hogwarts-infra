@@ -39,9 +39,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker Images
-        run: |
-          docker compose -f "$COMPOSE_FILE" build --pull --parallel
+        run: docker compose -f "$COMPOSE_FILE" build --pull --parallel
 
       - name: Push Docker Images
-        run: |
-          docker compose -f "$COMPOSE_FILE" push
+        run: docker compose -f "$COMPOSE_FILE" push

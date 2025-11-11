@@ -7,11 +7,11 @@ resource "aws_ecs_task_definition" "hogwarts-app" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["EC2"]
   container_definitions = jsonencode([{
-    name      = "hogwarts-app"
-    image     = "thaidoan868/hogwarts-app:0.1"
-    cpu       = 256
-    memory    = 512
-    essential = true
+    name         = "hogwarts-app"
+    image        = "thaidoan868/hogwarts-app:0.1"
+    cpu          = 256
+    memory       = 512
+    essential    = true
     portMappings = [{ containerPort = 8081, protocol = "tcp" }]
     environment = [
       {

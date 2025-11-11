@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: ${REGISTRY}/hogwarts-postgres:0.0.2
+    image: postgres:16
     container_name: hogwarts-postgres
     restart: unless-stopped
 
@@ -17,28 +17,38 @@ services:
 
     volumes:
       - pg_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
 
-    command: >
-      -c config_file=/etc/postgresql/postgresql.conf
-      -c hba_file=/etc/postgresql/pg_hba.conf
 
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-#  pgadmin:
-#    image: dpage/pgadmin4
-#    container_name: pgadmin
-#    restart: always
-#    env_file:
-#      - .sh
-#    ports:
-#      - "5050:80"
-#    depends_on:
-#      - postgres
+  #  pgadmin:
+  #    image: dpage/pgadmin4
+  #    container_name: pgadmin
+  #    restart: always
+  #    env_file:
+  #      - .sh
+  #    ports:
+  #      - "5050:80"
+  #    depends_on:
+  #      - postgres
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.5
+    command: [ "start", "--import-realm" ]
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: ${KC_DB_URL_DATABASE}
+      KC_DB_USERNAME: ${KC_DB_USERNAME}
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+    volumes:
+      - ./keycloak/hogwarts-realm.json:/opt/keycloak/data/import/hogwarts-realm.json:ro
+    depends_on:
+      - postgres
 
 volumes:
   pg_data:
-    name: pg_data
